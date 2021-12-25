@@ -7,9 +7,10 @@ volumes:
 services:
   pihole:
     container_name: pihole
-    image: cbcrowe/pihole-unbound:latest
+    image: solidus1983/pihole-unbound:latest
     hostname: ${HOSTNAME}
     domainname: ${DOMAIN_NAME}
+    serverip: ${ServerIP}
     ports:
       - 443:443/tcp
       - 53:53/tcp
@@ -25,9 +26,18 @@ services:
       REV_SERVER_TARGET: ${REV_SERVER_TARGET}
       REV_SERVER_DOMAIN: ${REV_SERVER_DOMAIN}
       REV_SERVER_CIDR: ${REV_SERVER_CIDR}
-      DNS1: 127.0.0.1#5335 # Hardcoded to our Unbound server
-      DNS2: 127.0.0.1#5335 # Hardcoded to our Unbound server
+      PIHOLE_DNS_: 127.0.0.1#5335 # Hardcoded to our Unbound server
       DNSSEC: "true" # Enable DNSSEC
+      DNS_FQDN_REQUIRED: "true"
+      DNS_BOGUS_PRIV: "true"
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      HOSTNAME: ${HOSTNAME}
+      PIHOLE_DOMAIN: ${DOMAIN_NAME}
+      TEMPERATUREUNIT: "c"
+      WEBUIBOXEDLAYOUT: "traditional"
+      WEBTHEME: "default-darker"
+      DNSMASQ_USER: "pihole"
+     
     volumes:
       - etc_pihole-unbound:/etc/pihole:rw
       - etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
