@@ -13,3 +13,7 @@ COPY pihole-cron /etc/cron.d/pihole-cron
 RUN chmod a+x /etc/cron.d/pihole-cron
 RUN crontab -l | { cat; echo "* * * * * bash /etc/cron.d/pihole-cron"; } | crontab -
 CMD cron
+
+#Certs for Ubound
+RUN wget -O root.hints https://www.internic.net/domain/named.root
+RUN sudo mv root.hints /var/lib/unbound/
