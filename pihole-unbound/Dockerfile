@@ -1,6 +1,6 @@
 FROM pihole/pihole:2022.02.1
 RUN apt update && apt install -y unbound cron && apt upgrade -y
-RUN curl -L https://www.internic.net/domain/named.root --output /var/lib/unbound/root.hints 
+
 
 COPY lighttpd-external.conf /etc/lighttpd/external.conf 
 COPY unbound-pihole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
@@ -15,5 +15,4 @@ RUN crontab -l | { cat; echo "* * * * * bash /etc/cron.d/pihole-cron"; } | cront
 CMD cron
 
 #Certs for Ubound
-RUN wget -O root.hints https://www.internic.net/domain/named.root
-RUN sudo mv root.hints /var/lib/unbound/
+RUN curl -L https://www.internic.net/domain/named.root --output /var/lib/unbound/root.hints 
