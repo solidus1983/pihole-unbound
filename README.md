@@ -1,4 +1,4 @@
-# Pi-Hole + Unbound
+# Pi-Hole + Unbound + Cron
 
 ## Description
 
@@ -8,6 +8,7 @@ The base image for the container is the [official Pi-Hole container](https://hub
 
 Based off https://github.com/chriscrowe/docker-pihole-unbound 1 Container.
 
+Also includes crontab to run ```pihole -g && pihole restartdns``` every 10 days at Midnight.
 ## Usage
 
 First create a `.env` file to substitute variables for your deployment. 
