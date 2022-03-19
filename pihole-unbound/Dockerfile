@@ -16,3 +16,8 @@ CMD cron
 
 #Certs for Ubound
 RUN curl -L https://www.internic.net/domain/named.root --output /var/lib/unbound/root.hints 
+
+#FixFlush
+Run rm -rf /opt/pihole/piholeLogFlush.sh
+Copy piholeLogFlush.sh /opt/pihole
+Run chmod +x /opt/pihole/piholeLogFlush.sh
