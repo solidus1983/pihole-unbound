@@ -1,8 +1,4 @@
-version: '2'
-
-volumes:
-  etc_pihole-unbound:
-  etc_pihole_dnsmasq-unbound:
+version: '3'
 
 services:
   pihole:
@@ -22,10 +18,11 @@ services:
       ServerIP: ${ServerIP}
       TZ: ${TZ}
       WEBPASSWORD: ${WEBPASSWORD}
-      REV_SERVER: ${REV_SERVER}
+      REV_SERVER: "True"
       REV_SERVER_TARGET: ${REV_SERVER_TARGET}
       REV_SERVER_DOMAIN: ${REV_SERVER_DOMAIN}
       REV_SERVER_CIDR: ${REV_SERVER_CIDR}
+      FTLCONF_REPLY_ADDR4: ${ServerIP}
       PIHOLE_DNS_: 127.0.0.1#5335 # Hardcoded to our Unbound server
       DNSSEC: "true" # Enable DNSSEC
       DNS_FQDN_REQUIRED: "true"
@@ -37,6 +34,13 @@ services:
       WEBUIBOXEDLAYOUT: "traditional"
       WEBTHEME: "default-darker"
       DNSMASQ_USER: "pihole"
+      DNSMASQ_LISTENING: "all"
+      ADMIN_EMAIL: ""
+      DHCP_ACTIVE: "False"
+      IPv6: "False"
+      QUERY_LOGGING: "True"
+      SKIPGRAVITYONBOOT: "1"
+      CUSTOM_CACHE_SIZE: "10000"
      
     volumes:
       - etc_pihole-unbound:/etc/pihole:rw
