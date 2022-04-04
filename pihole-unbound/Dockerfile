@@ -1,4 +1,4 @@
-FROM pihole/pihole:2022.02.1
+FROM pihole/pihole:2022.04.2beta
 RUN apt update && apt install -y unbound cron && apt upgrade -y
 
 
@@ -16,8 +16,3 @@ CMD cron
 
 #Certs for Ubound
 RUN curl -L https://www.internic.net/domain/named.root --output /var/lib/unbound/root.hints 
-
-#FixFlush
-Run rm -rf /opt/pihole/piholeLogFlush.sh
-Copy piholeLogFlush.sh /opt/pihole
-Run chmod +x /opt/pihole/piholeLogFlush.sh
