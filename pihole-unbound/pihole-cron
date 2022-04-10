@@ -1,1 +1,1 @@
-* 0 */10 * * pihole -g && pihole restartdns >/dev/null 2>&1
+* 0 * * * pihole -g && pihole restartdns >/dev/null 2>&1
