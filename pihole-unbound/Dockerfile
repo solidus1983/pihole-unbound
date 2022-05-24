@@ -1,4 +1,4 @@
-FROM pihole/pihole:2022.04.2
+FROM pihole/pihole:2022.05
 RUN apt update && apt install -y unbound cron && apt upgrade -y
 
 
