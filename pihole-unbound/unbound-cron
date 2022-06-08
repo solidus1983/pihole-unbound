@@ -1,0 +1,1 @@
+* * * */4 * curl -L https://www.internic.net/domain/named.root --output /var/lib/unbound/root.hints >/dev/null 2>&1

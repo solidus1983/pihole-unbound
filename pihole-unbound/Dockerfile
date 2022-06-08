@@ -10,8 +10,11 @@ ENTRYPOINT ./start_unbound_and_s6_init.sh
 
 #Add Cron Job for pihole -G
 COPY pihole-cron /etc/cron.d/pihole-cron
+COPY pihole-cron /etc/cron.d/unbound-cron
 RUN chmod a+x /etc/cron.d/pihole-cron
+RUN chmod a+x /etc/cron.d/unbound-cron
 RUN crontab -l | { cat; echo "* 0 * * * bash /etc/cron.d/pihole-cron"; } | crontab -
+RUN crontab -l | { cat; echo "* 0 * * * bash /etc/cron.d/unbound-cron"; } | crontab -
 CMD cron
 
 #Certs for Ubound
